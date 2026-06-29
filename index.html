@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asslam Smida — Portfolio Ingénierie</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0B1F3A;
+    --green: #2ECC71;
+    --green-dark: #27AE60;
+    --slate: #64748B;
+    --light: #F8F9FA;
+    --border: #E2E8F0;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--light);
+    color: var(--navy);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(11,31,58,0.96);
+    backdrop-filter: blur(8px);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 48px; height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--white); letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--green); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul li a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  nav ul li a:hover { color: var(--green); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 80px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 40%; height: 100%;
+    background: linear-gradient(135deg, transparent 40%, rgba(46,204,113,0.06) 100%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--green);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 900; color: var(--white);
+    line-height: 1.0; letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .hero h1 em {
+    font-style: normal; color: var(--green);
+  }
+  .hero-subtitle {
+    font-size: clamp(16px, 2vw, 22px); font-weight: 300;
+    color: rgba(255,255,255,0.55); margin-bottom: 48px;
+    max-width: 600px; line-height: 1.5;
+  }
+  .hero-contact {
+    display: flex; gap: 32px; flex-wrap: wrap;
+  }
+  .hero-contact a {
+    display: flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.5); text-decoration: none;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .hero-contact a:hover { color: var(--green); }
+  .hero-contact a svg { flex-shrink: 0; }
+
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 80px;
+    display: flex; align-items: center; gap: 12px;
+    color: rgba(255,255,255,0.3); font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .hero-scroll::before {
+    content: '';
+    display: block; width: 40px; height: 1px; background: rgba(255,255,255,0.2);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 80px; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--green);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px); font-weight: 700;
+    color: var(--navy); line-height: 1.1; margin-bottom: 56px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+  .about-text p {
+    color: var(--slate); font-size: 16px; line-height: 1.8; margin-bottom: 20px;
+  }
+  .about-formation { }
+  .formation-item {
+    border-left: 2px solid var(--border); padding-left: 24px;
+    margin-bottom: 32px; position: relative;
+  }
+  .formation-item::before {
+    content: '';
+    position: absolute; left: -5px; top: 6px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+  }
+  .formation-year {
+    font-size: 11px; font-weight: 600; color: var(--green);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .formation-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 4px;
+  }
+  .formation-school {
+    font-size: 13px; color: var(--slate);
+  }
+
+  /* ── PROJETS ── */
+  #projects { background: var(--light); }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 32px;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .project-card:hover {
+    box-shadow: 0 20px 60px rgba(11,31,58,0.10);
+    transform: translateY(-4px);
+  }
+  .project-header {
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 32px;
+  }
+  .project-meta { flex: 1; }
+  .project-tag {
+    display: inline-block;
+    background: rgba(46,204,113,0.1); color: var(--green-dark);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 2px;
+    margin-bottom: 16px;
+  }
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700; color: var(--navy);
+    margin-bottom: 8px; line-height: 1.2;
+  }
+  .project-subtitle { font-size: 14px; color: var(--slate); font-weight: 400; }
+  .project-year {
+    font-size: 48px; font-weight: 900; color: var(--border);
+    font-family: 'Playfair Display', serif; flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .project-body { padding: 40px 48px; }
+  .project-cols {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  }
+  .project-section-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--slate);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-desc {
+    font-size: 14px; color: var(--slate); line-height: 1.75;
+  }
+  .project-role-badge {
+    display: inline-block;
+    background: var(--navy); color: var(--white);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    padding: 6px 14px; border-radius: 2px; margin-bottom: 12px;
+  }
+  .project-role-desc {
+    font-size: 14px; color: var(--slate); line-height: 1.7;
+  }
+
+  /* Skills bar */
+  .skills-used { margin-top: 32px; }
+  .skill-row {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 14px;
+  }
+  .skill-name {
+    font-size: 12px; font-weight: 600; color: var(--navy);
+    min-width: 180px; letter-spacing: 0.02em;
+  }
+  .skill-bar-track {
+    flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden;
+  }
+  @keyframes fillBar {
+    from { width: 0; }
+    to   { width: var(--target-width); }
+  }
+
+  .skill-bar-fill {
+    height: 100%; background: var(--green);
+    border-radius: 2px;
+    width: var(--target-width);
+    animation: fillBar 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--delay, 0.2s);
+  }
+
+  /* ── COMPÉTENCES ── */
+  #skills { background: var(--navy); }
+  #skills .section-title { color: var(--white); }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  }
+  .skill-block {
+    background: rgba(255,255,255,0.04);
+    padding: 32px 28px;
+    transition: background 0.2s;
+  }
+  .skill-block:hover { background: rgba(46,204,113,0.08); }
+  .skill-block-icon {
+    width: 36px; height: 36px; margin-bottom: 16px;
+    color: var(--green);
+  }
+  .skill-block-title {
+    font-size: 13px; font-weight: 700; color: var(--white);
+    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .skill-list {
+    list-style: none;
+  }
+  .skill-list li {
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .skill-list li::before {
+    content: '';
+    display: inline-block; width: 4px; height: 4px;
+    background: var(--green); border-radius: 50%; flex-shrink: 0;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--white);
+    text-align: center;
+  }
+  #contact .section-title { margin-bottom: 16px; }
+  .contact-sub {
+    font-size: 16px; color: var(--slate); max-width: 500px;
+    margin: 0 auto 40px;
+  }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--navy); color: var(--white);
+    padding: 16px 36px; border-radius: 2px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .contact-btn:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.3);
+    text-align: center; padding: 28px 48px;
+    font-size: 12px; letter-spacing: 0.04em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    nav ul { gap: 20px; }
+    .hero { padding: 120px 32px 80px; }
+    section { padding: 72px 32px; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .project-header { flex-direction: column; }
+    .project-year { font-size: 32px; }
+    .project-body { padding: 32px 24px; }
+    .project-header { padding: 32px 24px 24px; }
+    .project-cols { grid-template-columns: 1fr; gap: 32px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .hero-scroll { left: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A.<span>S</span></div>
+  <ul>
+    <li><a href="#about">Profil</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#why">Pourquoi moi ?</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Portfolio · Génie Énergétique & Climatique</div>
+  <h1>Asslam<br><em>Smida</em></h1>
+  <p class="hero-subtitle">Futur ingénieur en Génie Énergétique et Climatique — ECAM-EPMI · Cycle ingénieur en alternance dès septembre 2026</p>
+  <div class="hero-contact">
+    <a href="mailto:as.smida@epmistes.net">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      as.smida@epmistes.net
+    </a>
+    <a href="tel:+33614588790">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.6 12.17a19.79 19.79 0 0 1-3.07-8.68A2 2 0 0 1 3.53 1.5h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.13 6.13l1.77-1.77a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      +33 6 14 58 87 90
+    </a>
+    <a href="https://linkedin.com/in/asslam-smida" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      linkedin.com/in/asslam-smida
+    </a>
+    <a href="#">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Lyon · Permis B
+    </a>
+  </div>
+  <div class="hero-scroll">Scroll pour découvrir</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Qui suis-je</div>
+  <div class="section-title">Profil & Formation</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Futur ingénieur en Génie Énergétique et Climatique à l'ECAM-EPMI, je souhaite contribuer à l'optimisation de procédés énergétiques et à la valorisation des ressources. Mes bases en thermodynamique, mécanique des fluides et analyse de données me permettent d'aborder les enjeux de performance des installations et de méthanisation.</p>
+      <p>Rigoureux et curieux, j'ai développé au fil de mes projets académiques une approche complète alliant recherche documentaire, conception technique, expérimentation et communication. Je souhaite m'investir dans des projets concrets liés aux systèmes CVC et aux énergies renouvelables.</p>
+      <p>Je cherche actuellement une alternance dans le cadre de mon cycle ingénieur (3 ans) pour démarrer en septembre 2026, idéalement sur des missions de conception, d'étude ou de dimensionnement de systèmes CVC-Énergie.</p>
+    </div>
+    <div class="about-formation">
+      <div class="formation-item">
+        <div class="formation-year">2026 → 2029 (prévu)</div>
+        <div class="formation-title">Diplôme d'Ingénieur — Génie Énergétique et Climatique</div>
+        <div class="formation-school">ECAM-EPMI · Grasse — Cycle ingénieur en alternance (3 ans)</div>
+      </div>
+      <div class="formation-item">
+        <div class="formation-year">2023 → 2026</div>
+        <div class="formation-title">Classe Préparatoire Intégrée</div>
+        <div class="formation-school">ECAM-EPMI · Grasse — Deux années validées avec projets TIPE</div>
+      </div>
+      <div class="formation-item">
+        <div class="formation-year">2023</div>
+        <div class="formation-title">Baccalauréat STI2D — Architecture & Construction</div>
+        <div class="formation-school">Lycée Docteur Charles Mérieux · Lyon</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projects">
+  <div class="section-label">Réalisations académiques</div>
+  <div class="section-title">Projets TIPE</div>
+
+  <!-- PROJET 1 : ClimaSynth -->
+  <div class="project-card" id="p1">
+    <div class="project-header">
+      <div class="project-meta">
+        <div class="project-tag">Thermodynamique · Prototype · Arduino</div>
+        <div class="project-title">ClimaSynth — La climatisation écologique</div>
+        <div class="project-subtitle">ECAM-EPMI · 2025–2026 · Projet TIPE 2ème année · Équipe de 5</div>
+      </div>
+      <div class="project-year">2026</div>
+    </div>
+    <div class="project-body">
+      <div class="project-cols">
+        <div>
+          <div class="project-section-title">Contexte & Problématique</div>
+          <p class="project-desc">Face au paradoxe environnemental des climatiseurs classiques — forte consommation électrique et utilisation de fluides frigorigènes HFC au pouvoir de réchauffement global très élevé — le projet ClimaSynth visait à concevoir un système de refroidissement écologique, peu énergivore et techniquement réalisable à petite échelle.<br><br>La solution retenue repose sur le <strong>refroidissement évaporatif</strong> : l'évaporation de l'eau absorbe la chaleur de l'air (Q = m × L), permettant une baisse de température sans compresseur ni gaz réfrigérant. En conditions estivales à Grasse (25 °C, 50 % d'humidité relative), la chute théorique attendue était de 5 °C.</p>
+        </div>
+        <div>
+          <div class="project-section-title">Mon rôle dans l'équipe</div>
+          <span class="project-role-badge">Recherche scientifique & Conception technique</span>
+          <p class="project-role-desc">J'ai principalement contribué aux recherches scientifiques et aux études techniques liées au fonctionnement du système de refroidissement. J'ai participé à la conception du système, à l'élaboration des schémas de principe et à la validation des choix techniques. Mon rôle a été déterminant pour garantir la pertinence scientifique des solutions retenues. J'ai également travaillé sur la modélisation et apporté un appui technique lors de la réalisation du prototype.</p>
+        </div>
+      </div>
+
+      <div class="skills-used">
+        <div class="project-section-title">Compétences mobilisées</div>
+        <div class="skill-row">
+          <span class="skill-name">Thermodynamique appliquée</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:90%;--delay:0.2s"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Électronique & Arduino (BME280, MOSFET)</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:75%;--delay:0.4s"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Modélisation 3D & schémas techniques</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:70%;--delay:0.6s"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Gestion de projet & travail en équipe</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:85%;--delay:0.8s"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Analyse économique & impact environnemental</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:80%;--delay:1.0s"></div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px; padding:20px 24px; background:var(--light); border-left:3px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--slate);margin-bottom:8px;">Résultats & Livrables</div>
+        <p style="font-size:14px;color:var(--slate);line-height:1.7;">Prototype fonctionnel assemblé (budget total : 88,22 €) intégrant ventilateurs 140 mm, pompe 12V, capteurs BME280, Arduino Uno et filtre cellulose évaporatif. Rapport final de 24 pages, présentation orale, cagnotte participative et présence sur réseaux sociaux (Instagram & TikTok @ClimaSynth).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJET 2 : CBBT -->
+  <div class="project-card" id="p2">
+    <div class="project-header">
+      <div class="project-meta">
+        <div class="project-tag">Écologie urbaine · Design industriel · Gestion de projet</div>
+        <div class="project-title">C.B.B.T — Cigarette Butt Bin Table</div>
+        <div class="project-subtitle">ECAM-EPMI · 2024–2025 · Projet TIPE 1ère année · Équipe de 4</div>
+      </div>
+      <div class="project-year">2025</div>
+    </div>
+    <div class="project-body">
+      <div class="project-cols">
+        <div>
+          <div class="project-section-title">Contexte & Problématique</div>
+          <p class="project-desc">Les mégots de cigarettes représentent 30 à 40 % des déchets collectés lors des opérations de nettoyage urbain. Un seul mégot peut contaminer jusqu'à 500 litres d'eau et met 10 à 15 ans à se dégrader. Face à ce constat observé directement sur le campus de Grasse, le projet visait à concevoir un mobilier urbain innovant : une table ronde dont le pied central constitue un réceptacle hermétique pour mégots, préparant leur collecte et leur recyclage.<br><br>Une enquête menée auprès des étudiants et enseignants a révélé que 100 % des répondants étaient favorables à l'installation de poubelles spécifiques, et 90 % identifiaient les mégots comme une source majeure de pollution.</p>
+        </div>
+        <div>
+          <div class="project-section-title">Mon rôle dans l'équipe</div>
+          <span class="project-role-badge">Directeur de la Communication</span>
+          <p class="project-role-desc">En charge de la conception et du déploiement de la stratégie de communication pour promouvoir le projet C.B.B.T. J'ai coordonné la communication externe, rédigé les supports de présentation, géré l'identité visuelle du projet et assuré le lien avec les partenaires potentiels (ÉcoMégot, Veolia, ville de Grasse). J'ai également contribué à la sensibilisation des usagers du campus aux enjeux de la pollution par les mégots.</p>
+        </div>
+      </div>
+
+      <div class="skills-used">
+        <div class="project-section-title">Compétences mobilisées</div>
+        <div class="skill-row">
+          <span class="skill-name">Communication & stratégie de marque</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:90%;--delay:0.2s"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Analyse environnementale & réglementation</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:80%;--delay:0.4s"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Enquête & traitement de données (sondage)</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:75%;--delay:0.6s"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Modélisation 3D (SolidWorks/CAO)</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:65%;--delay:0.8s"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Gestion budgétaire & partenariats</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width:70%;--delay:1.0s"></div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px; padding:20px 24px; background:var(--light); border-left:3px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--slate);margin-bottom:8px;">Résultats & Livrables</div>
+        <p style="font-size:14px;color:var(--slate);line-height:1.7;">Modélisation 3D complète du C.B.B.T, rapport technique en anglais (33 pages), analyse réglementaire de la loi anti-gaspillage 2020 (éco-organisme Alcome), stratégie de déploiement sur le campus de Grasse et identification de partenaires de recyclage (MéGo, Veolia). Budget matériaux estimé : 167 €.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPÉTENCES -->
+<section id="skills">
+  <div class="section-label">Savoir-faire</div>
+  <div class="section-title">Compétences</div>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <svg class="skill-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+      </svg>
+      <div class="skill-block-title">Compétences Techniques</div>
+      <ul class="skill-list">
+        <li>Thermodynamique & bilans énergétiques</li>
+        <li>Mécanique des fluides & transferts thermiques</li>
+        <li>Analyse de performances énergétiques</li>
+        <li>Étude de procédés & recherche de solutions</li>
+        <li>Valorisation énergétique & gestion des déchets</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <svg class="skill-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+      </svg>
+      <div class="skill-block-title">Informatique & Outils</div>
+      <ul class="skill-list">
+        <li>Pack Office 365 & Excel avancé</li>
+        <li>AutoCAD (notions)</li>
+        <li>MATLAB</li>
+        <li>Python</li>
+        <li>C / C++</li>
+        <li>Arduino & électronique embarquée</li>
+        <li>Logisim</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <svg class="skill-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      <div class="skill-block-title">Soft Skills</div>
+      <ul class="skill-list">
+        <li>Rigueur & esprit d'analyse</li>
+        <li>Curiosité intellectuelle</li>
+        <li>Sens de l'initiative</li>
+        <li>Travail en équipe & coordination</li>
+        <li>Communication technique</li>
+        <li>Gestion de projet</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <svg class="skill-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+      <div class="skill-block-title">Méthodologies</div>
+      <ul class="skill-list">
+        <li>Analyse de données & interprétation</li>
+        <li>Bilan matière et énergie</li>
+        <li>Recherche d'optimisation</li>
+        <li>Étude de faisabilité</li>
+        <li>Démarche expérimentale</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <svg class="skill-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <div class="skill-block-title">Langues</div>
+      <ul class="skill-list">
+        <li>Français — Langue maternelle</li>
+        <li>Anglais — Niveau B2</li>
+        <li>Rapport TIPE rédigé en anglais</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <svg class="skill-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+      </svg>
+      <div class="skill-block-title">Domaines d'intérêt</div>
+      <ul class="skill-list">
+        <li>Systèmes CVC & climatisation</li>
+        <li>Méthanisation & biogaz</li>
+        <li>Efficacité énergétique des bâtiments</li>
+        <li>Énergies renouvelables</li>
+        <li>Éco-conception & analyse de cycle de vie</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI MOI -->
+<section id="why" style="background:var(--light);">
+  <div class="section-label">Pourquoi moi et pas un autre ?</div>
+  <div class="section-title">4 raisons de me choisir</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+
+    <div style="background:var(--navy);border-radius:2px;padding:32px 28px;">
+      <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:rgba(46,204,113,0.2);line-height:1;margin-bottom:12px;">01</div>
+      <div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px;">Projets concrets dès la prépa</div>
+      <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;">Deux projets TIPE menés de A à Z — prototype physique assemblé, budget géré, rapport rédigé, présentation orale. Là où la plupart des candidats n'ont que des cours théoriques à ce stade, j'ai déjà fabriqué, testé et livré.</p>
+    </div>
+
+    <div style="background:var(--navy);border-radius:2px;padding:32px 28px;">
+      <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:rgba(46,204,113,0.2);line-height:1;margin-bottom:12px;">02</div>
+      <div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px;">Double compétence technique + communication</div>
+      <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;">Capable de concevoir un système (schémas, Arduino, thermodynamique) ET de le présenter, le valoriser, le défendre auprès de partenaires extérieurs. Une combinaison rare à ce niveau.</p>
+    </div>
+
+    <div style="background:var(--navy);border-radius:2px;padding:32px 28px;">
+      <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:rgba(46,204,113,0.2);line-height:1;margin-bottom:12px;">03</div>
+      <div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px;">Orientation CVC assumée et ciblée</div>
+      <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;">Mon cycle ingénieur en Génie Énergétique et Climatique n'est pas un choix par défaut — c'est une direction choisie, cohérente avec mes projets et ma recherche d'alternance active dans le domaine CVC-Énergie.</p>
+    </div>
+
+    <div style="background:var(--navy);border-radius:2px;padding:32px 28px;">
+      <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:rgba(46,204,113,0.2);line-height:1;margin-bottom:12px;">04</div>
+      <div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px;">Disponible, mobile et opérationnel</div>
+      <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;">Permis B, basé à Lyon, disponible dès septembre 2026. Prêt à m'investir pleinement dès le premier jour, sans période d'adaptation prolongée.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Disponible dès septembre 2026</div>
+  <div class="section-title">Travaillons ensemble</div>
+  <p class="contact-sub">Je recherche une alternance dans le domaine CVC-Énergie pour intégrer le cycle ingénieur de l'ECAM-EPMI. N'hésitez pas à me contacter.</p>
+  <a href="mailto:as.smida@epmistes.net" class="contact-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+    Me contacter par e-mail
+  </a>
+</section>
+
+<footer>
+  © 2026 Asslam Smida · Futur Ingénieur GEC · ECAM-EPMI
+</footer>
+
+<script>
+  // Nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav ul li a');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.style.color = '');
+        const link = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (link) link.style.color = '#2ECC71';
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => sectionObserver.observe(s));
+</script>
+
+</body>
+</html>
